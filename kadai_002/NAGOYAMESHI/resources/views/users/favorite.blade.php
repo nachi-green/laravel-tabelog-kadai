@@ -23,7 +23,7 @@
                      <div class="card-body p-2">
                          <h5 class="card-title">{{ App\Models\Shop::find($fav->favoriteable_id)->name }}</h5>
                          <a href="{{ route('shops.favorite', $fav->favoriteable_id) }}" class="favorite-item-delete text-secondary card-text">
-                            <small class="text-body-secondary"><i class="fa-regular fa-heart"></i> お気に入り登録解除</small>
+                            <small class="text-body-secondary"><i class="fa-solid fa-heart"></i> お気に入り登録解除</small>
                          </a>
                      </div>
                  </div>
