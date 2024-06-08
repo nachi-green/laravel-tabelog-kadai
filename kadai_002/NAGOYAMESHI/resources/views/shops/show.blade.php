@@ -93,11 +93,11 @@
                         <div class="text-center ps-0">
                             @if($shop->isFavoritedBy(Auth::user()))
                             <a href="{{ route('shops.favorite', $shop) }}" class="btn text-dark fs-5">
-                                <i class="fa-solid fa-heart"></i>　お気に入り登録
+                                <i class="fa-solid fa-heart"></i>　お気に入り登録解除
                             </a>
                             @else
                             <a href="{{ route('shops.favorite', $shop) }}" class="btn text-dark fs-5">
-                                <i class="fa-regular fa-heart"></i>　お気に入り解除
+                                <i class="fa-regular fa-heart"></i>　お気に入り登録
                             </a>
                             @endif
                         </div>
@@ -119,12 +119,14 @@
                         <p class="mb-1 review-score-color"> {{ str_repeat('★', $review->score) }}</p>
                         <p class="mb-1"> {{ $review->user->name }}</p>
                         <p class="mb-1 col-auto"> {{ $review->updated_at ->format('Y/m/d H:i') }}</p>
+                        @if ($user_id == $review->user_id)
                         <a href="{{ route('reviews.edit', ['shop' => $shop->id, 'review'=> $review->id]) }}" class="alert-link login-text mb-1">Edit</a>
                         <form action="{{ route('reviews.destroy', ['shop' => $shop->id, 'review'=> $review->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-link login-text p-0 mb-1" onclick="return confirm('削除してもよいですか？');">Delete</button>
                         </form>
+                        @endif
                     </div>
                     <div class="col-7 px-0">
                         <h5 class="overflow-content">{{ $review->content }}</h5>
