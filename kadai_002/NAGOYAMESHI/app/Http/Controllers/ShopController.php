@@ -86,7 +86,8 @@ class ShopController extends Controller
     public function show(Shop $shop, User $user)
     {
         $user = Auth::user();
-        
+        $user_id = Auth::id();
+
         $categories = Category::all();
         $reviews = $shop->reviews()->latest('updated_at')->paginate(5);
   
@@ -96,7 +97,7 @@ class ShopController extends Controller
         $reviews_count = $shop->reviews()->count();
         $favorites_count = $shop->favorites()->count();
         
-        return view('shops.show', compact('shop', 'categories', 'reviews', 'reviews_round_avgScore', 'reviews_count', 'favorites_count', 'user'));
+        return view('shops.show', compact('shop', 'categories', 'reviews', 'reviews_round_avgScore', 'reviews_count', 'favorites_count', 'user', 'user_id'));
     }
 
     /**
